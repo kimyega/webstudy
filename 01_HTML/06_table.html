@@ -125,5 +125,68 @@
       <td>6</td>
     </tr>
   </table>
+  <!-- 
+    셀 병합
+    1. <td> 태그에 병합 속성을 추가한다.
+    2. 병합 속성
+      1) colspan : 열 병합, 좌우 셀을 병합
+      2) rowspan : 행 병합, 상하 셀을 병합
+   -->
+  <!-- 열 병합 -->
+  <table border="1">
+    <tbody>
+      <tr>
+        <td>1열</td>
+        <td>2열</td>
+        <td>3열</td>
+      </tr>
+      <tr>
+        <td>1열</td>
+        <td colspan="2">2열3열</td>
+      </tr>
+      <tr>
+        <td colspan="3">1열</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 행 병합 : 상하 셀을 병합 -->
+  <table border="1">
+    <tbody>
+      <tr>
+        <td rowspan="3">1행</td>
+        <td>1행</td>
+        <td>1행</td>
+      </tr>
+      <tr>
+        <td>2행</td>
+        <td>2행</td>
+      </tr>
+      <tr>
+        <td>3행</td>
+        <td>3행</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td><img src="../../assets/image/fruit1.jpg" alt="베리" width="192px"></td>
+        <td><img src="../../assets/image/fruit2.jpg" alt="아보카도" width="192px"></td>
+        <td><img src="../../assets/image/fruit3.jpg" alt="바나나" width="192px"></td>
+      </tr>
+      <tr>
+        <td>1000원</td>
+        <td>2000원</td>
+        <td>3000원</td>
+      </tr>
+      <tr>
+        <td><a href="../../assets/image/fruit1.jpg">베리</a></td>
+        <td><a href="../../assets/image/fruit2.jpg">아보카도</a></td>
+        <td><a href="../../assets/image/fruit3.jpg">바나나</a></td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
