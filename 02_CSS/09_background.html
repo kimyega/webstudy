@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <style>
+    /* box 크기와 배경 이미지 크기를 동일하게 맞춤 */
+    .box1 {
+      box-sizing: border-box;
+      width: 192px;
+      height: 128px;
+      background-image: url(../../assets/image/animal10.jpg);
+      background-size: 192px 128px;
+    }
+  </style>
+  <div class="box1"></div>
+  <hr>
+
+  <style>
+    .box2 {
+      box-sizing: border-box;
+      width: 500px;
+      height: 380px;
+      border: 1px solid aquamarine;
+      background-image: url(../../assets/image/attach1.png);
+      background-repeat: no-repeat; /* 반복 없음 */
+      background-size: auto;      /* 이미지 크기를 그대로 사용 */
+      background-position: top; /* top/bottom(세로 정렬), left/center/right(가로 정렬) */
+    }
+
+  </style>
+
+  <div class="box2"></div>
+
+  <hr>
+
+  <style>
+    /* box보다 큰 이미지 처리 */
+    .box3 {
+      box-sizing: border-box;
+      width: 300px;
+      height: 300px;
+      border: 1px solid khaki;
+      background-image: url(../../assets/image/light2.png);
+      background-size: cover; /* contain : 이미지르 늘리거나 자르지 않고 최대한 크게 조정해서 표현 */
+      background-repeat: no-repeat; /* cover : 너비/ 높이 중 작은부분으로 박스크기에 맞추고 긴부분은 잘라낸다. */
+      background-position: top;
+
+    }
+  </style>
+
+  <div class="box3"></div>
+  <hr>
+
+  <style>
+    /* 이미지의 일부만 표시하기 */
+    .box4 {
+      box-sizing: border-box;
+      width: 115px;
+      height: 115px;
+      background-image: url(../../assets/image/weather.png);
+      background-position: -145px 0;  /* 가로 세로 순으로 이동, -145은 배경이 왼쪽으로 145px 이동 */
+      background-position: 0 -145px;
+    }
+  </style>
+  <div class="box4"></div>
+
+  <hr>
+  <style>
+    .box5 {
+      box-sizing: border-box;
+      width: 105px;
+      height: 135px;
+      background-image: url(../../assets/image/logo.png);
+      background-position: -1171px -167px;
+
+    }
+  </style>
+  <div class="box5"></div>
+</body>
+</html>
