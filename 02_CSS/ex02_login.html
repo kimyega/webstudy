@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <style>
+    body, div, form {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <style>
+    .login_wrap {
+      width: 450px;
+      display: flex;
+      justify-content: space-between; /* 중간 공백 */
+      margin: 10px auto;
+    }
+    .left_wrap {
+      width: 315px;
+    }
+    .right_wrap {
+      width: 126px;   /* clac(450, 0.28) */
+    }
+    .id_icon_wrap {
+      display: flex;
+      border: 1px solid grey;
+      border-radius: 5px 0 5px;
+    }
+    .icon_wrap{
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      background-color: grey;
+      border-radius: 3.5px 0 0;
+    }
+    .id_wrap {
+      width: 275px;
+      height: 40px;
+      padding-left: 10px;
+      background-color: white;
+      border: 0 0 3.5px;
+    }
+    .id_wrap > input {
+      width: 250px;
+      height: 34px;
+      border: 0;
+      outline: 0;
+    }
+    .btn_login {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      border: 0;
+
+    }
+    
+  </style>
+  <form action="#" method="post">
+    <div class="login_wrap">
+        <div class="left_wrap">
+          <div class="id_icon_wrap">
+            <div class="icon_wrap">
+              <label for="id">
+                <i class="fa-solid fa-user"></i>
+              </label>
+            </div>
+
+            <div class="id_wrap">
+              <input type="text" id="id" placeholder="username">
+            </div>
+          </div>
+        </div>
+        <div class="id_icon_wrap">
+          <div class="icon_wrap">
+            <label for="pw">
+              <i class="fa-solid fa-key"></i>
+            </label>
+          </div>
+
+          <div class="id_wrap">
+            <input type="text" id="pw" placeholder="●●●●">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+        <div class="right_wrap">
+
+    <div class="btn_login">
+
+    </div>
+  </form>
+
+
+
+</body>
+</html>
