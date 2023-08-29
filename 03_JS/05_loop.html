@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="box1"></div>
+  <script>
+    var str = '';
+    var n = 1;
+    while(n < 6){
+      str += (n + '<br>');
+      n++;
+    }
+    document.getElementById('box1').innerHTML = str;
+
+    
+    </script>
+  <hr>
+
+  <style>
+    #box2 > img {
+      margin-right: 10px;
+    }
+  </style>
+  <div id="box2"></div>
+  <script>
+    var str1 = '';
+    for(let n = 1; n <= 10; n++){
+      str1 += '<img src="../../assets/image/animal' + n + '.jpg" width="150px">';
+    }
+    document.getElementById('box2').innerHTML = str1;
+  </script>
+
+  <hr>
+
+  <div id="box3"></div>
+
+  <script>
+    var str2 = '<select name="month"><option value="">월 선택</option>';
+    for(let n = 1; n <= 12; n++){
+      str2 += '<option value="' + n +'">' + n +'월</option>';
+    }
+    str2 += '</select>';
+    document.getElementById('box3').innerHTML = str2;
+  </script>
+
+  <hr>
+
+  <style>
+    #box4 > table{
+      box-sizing: border-box;
+      border-collapse: collapse; 
+      border: 1px solid navy;
+      font-size: 40px;
+      margin: 10px auto;
+    }
+    #box4 td {
+      text-align: center; 
+      vertical-align: middle;
+      width: 100px ;
+      height: 100px;
+      color: navy;
+
+    }
+  </style>
+  <div id="box4"></div>
+  <script>
+    var str = '<table border="1">';
+    for(let n = 1; n <= 3; n++){
+      str += '<tr>';
+      for(let m = n * 3 - 2; m <= n * 3; m++){
+        str += '<td>' + m + '</td>';
+      }
+      str += '</tr><br>';
+    }
+    str += '</table>';
+    document.getElementById('box4').innerHTML = str;
+  </script>
+</body>
+</html>
