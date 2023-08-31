@@ -206,7 +206,7 @@
       return med;
     }
     function myMedium2(a, b, c){
-      const arr = [a, b, c];
+      var arr = [a, b, c];
       arr.sort();
       document.writeln(arr);
     }
@@ -331,6 +331,95 @@
         }, 1000);
       }
       myTimer(5);
+
+    </script>
+
+    <script>
+
+      // 객체 속성 동적 처리(추가, 삭제, 수정)
+
+      var car = {};
+
+      car.model = '모닝';
+      car.maker = 'kia';
+
+      car.model = '레이';
+
+      delete car.maker;
+
+      console.log(car);
+    </script>
+
+    <script>
+      /*
+        생성자 함수
+        1. 객체를 만드는 함수이다.
+        2. new 키워드를 이용해서 객체를 만들 수 있다.
+        3. 관례상 첫 글자를 대문자로 작성한다.
+        4. 생성자 함수 형식
+        fuction 함수명(매개변수, 매개변수, ...){
+          this.속성 = 매개변수;
+          this.속성 = 매개변수;
+          ...
+        }
+      */
+     function Product(code, name, price){
+      this.code = code;
+      this.name = name;
+      this.price = price;
+     }
+
+     var product = new Product('A123', '청소기', 10000);
+
+     console.log(product['code']);
+     console.log(product['name']);
+     console.log(product['price']);
+    </script>
+
+    <script>
+      // 객체는 for-in문으로 각 속성을 순회할 수 있다.
+      var book = {
+        title: '어린왕자',
+        author: '생택쥐베리',
+        price: 10000
+      };
+      for(let p in book){
+        console.log(book[p]);
+      }
+    </script>
+
+    <style>
+      div > table {
+        box-sizing: border-box;
+      }
+    </style>
+    <div id="box"></div>
+    <script>
+      function tableF(name, phoneNo, email){
+        this.name = name;
+        this.phoneNo = phoneNo;
+        this.email = email;
+      }
+      var table1 = new tableF('숙희', '010-1111-1111', 'sookhe@gamil.com');
+      var table2 = new tableF('정희', '010-2222-2222', 'junghee@gmail.com');
+      var table3 = new tableF('미희', '010-3333-3333', 'minhee@gmail.com');
+
+      var arr1 = [table1, table2, table3];
+
+      var str = '';
+      str += '<table border="1"> <thead><tr><td>성명</td><td>연락처</td><td>이메일</td><tr></thead><tbody>';
+      for(let p in arr1){
+        // str += '<tr>';
+        // for(let q in p){
+        //   str += '<td>' + arr1[p][q] + '</td>';
+        // }
+        // str += '</tr>';
+        str += '<tr><td>' + arr1[p].name + '</td>';
+        str += '<td>' + arr1[p].phoneNo + '</td>';
+        str += '<td>' + arr1[p].email + '</td></tr>';
+      }
+      str += '</tbody></table>';
+      document.getElementById('box').innerHTML = str;
 
     </script>
 </body>

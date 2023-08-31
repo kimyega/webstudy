@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    /*
+      JSON 내장 객체
+
+      1. JavaScript 객체 -> 문자열 형식의 JSON 데이터
+        var 문자열 = JSON.stringify(객체)
+      2. 문자열 형식의 JSON 데이터 -> JavaScript 객체
+        var 객체 = JSON.parse(문자열)
+     */
+
+      var person = {
+        name: '홍길동',
+        age: 30
+      }
+      var str = JSON.stringify(person);
+      console.log(typeof str, str);
+
+      var person = JSON.parse(str);
+      console.log(typeof person, person);
+  </script>
+
+  <script>
+    /* 
+      Date 내장 객체 
+      1. 타임스탬프 기반으로 날짜와 시간을 나타낸다.
+        (1970년 1월 1일 자정 UTC 기준으로 증가하고 있는 밀리초)
+      2. 타임스탬프, 년, 월, 일, 시, 분, 초 등 원하는 값을 얻을 수 있다.  
+    */
+      var now1 = Date.now();
+      console.log(now1);
+
+      var strNow = Date();
+      console.log(typeof strNow, strNow);
+
+      var now = new Date();
+      console.log(typeof now,now);
+
+      // 년월일시분초
+      var year = now.getFullYear();
+      var month = now.getMonth(); // 0 ~ 11
+      var day = now.getDate();
+      var hour = now.getHours();
+      var minute = now.getMinutes();
+      var second = now.getSeconds();
+  </script>
+
+  <style>
+    .warning {
+      color: red;
+    }
+  </style>
+
+  <div id="clock">
+    <span id="year"></span>
+    년
+    <span id="month"></span>
+    월
+    <span id="day"></span>
+    일
+    <span id="hour"></span>
+    시
+    <span id="minute"></span>
+    분
+    <span id="second"></span>
+    초
+
+  
+  <script>
+    var year = now.getFullYear();
+    var month = now.getMonth();
+    var day = now.getDay();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var timestamp = now.getTime();
+
+    // 특정 날짜와 시간 객체
+    var someday = new Date(2023, 9, 30, 16, 30, 30);
+    console.log(someday);
+
+    var timerId = setInterval(function(){
+      
+      var now = new Date();
+      document.getElementById('year').textContent = now.getFullYear();
+      document.getElementById('month').textContent = String(now.getMonth() + 1).padStart(2,'0');
+      document.getElementById('day').textContent = String(now.getDay()).padStart(2, '0');
+      document.getElementById('hour').textContent = String(now.getHours()).padStart(2, '0');
+      document.getElementById('minute').textContent = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('second').textContent = String(now.getSeconds()).padStart(2, '0');
+      if(now.getSeconds() >= 50){
+       document.getElementById('clock').setAttribute('class', 'warning'); 
+      } else {
+        document.getElementById('clock').removeAttribute('class');
+      }
+
+    }, 1000);
+  </script>
+
+</div>
+<div id="dday"></div>
+
+<script>
+  setInterval(function(){
+    var now = new Date();
+    var dday = new Date(2023, 10, 16);
+    var timestamp = dday - now;
+    var totalSecond = parseInt(timestamp / 1000);
+    var restDay = parseInt(timestamp / 1000 / 60 / 60 / 24);
+    var restHour = parseInt(timestamp / 1000 / 60 / 60) % 24;
+    var restMinute = parseInt(timestamp / 1000 / 60) % 60;
+    var restSecond = parseInt(timestamp / 1000) % 60;
+
+    var str = 'D-Day&nbsp;';
+    if(totalSecond > 0){
+      if(restDay >= 1){
+        str += restDay + '일&nbsp;';
+      }
+      str += String(restHour).padStart(2, '0') + '시 ' + String(restMinute).padStart(2, '0') + '분 ' + String(restSecond).padStart(2, '0') + '초';
+    }else{
+      str += '입니다.';
+    }
+    document.getElementById('dday').innerHTML = '<h1>' + str + '</h1>';
+  }, 1000);
+</script>
+
+
+
+
+</body>
+</html>
