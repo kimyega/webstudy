@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <style>
+    #box1{
+      width: 100px;
+      height: 100px;
+      border: 1px solid gray;
+      transition-property: all;   /* width 변화를 보겠다! 잘 모르면 all 권장 */
+      transition-duration: 0.3s;    /* 3초 동안 변화를 보겠다! */
+      transition-timing-function: ease-out;
+    }
+    #box1:hover {
+      width: 400px;
+      height: 300px;
+      border: 1px solid tomato;
+    }
+  </style>
+  <div id="box1">box1</div>
+
+  <hr>
+  <style>
+    #box2 {
+      width: 100px;
+      height: 100px;
+      border: 1px solid grey;
+      transition-property: transform;
+      transition-duration: 1s;
+      transition-timing-function: ease-out;
+    }
+    #box2:active {
+      transform: translate3d(700px, 150px, -150px);
+      /* transform: scaleX(2.0); */
+      /* transform: rotate(75deg); */
+    }
+  </style>
+  <div id="box2">
+    box2
+  </div>
+
+  <hr>
+
+  <style>
+    div {
+      box-sizing: border-box;
+      transition: transform 1s, opacity 1s;
+      transition-timing-function: ease-out;
+      margin: 20px auto;
+    }
+    .image {
+      width: 384px;
+      height: 256px;
+      background-image: url(../../assets/image/fruit1.jpg);
+      background-size: 100%;
+    }
+    .description{
+      width: 384px;
+      height: 256px;
+      background-color: rgba(0, 128, 128, 0.7);
+      font-size: 32px;
+      font-weight: 900;
+      color: floralwhite;
+      text-align: center;
+      line-height: 256px;
+      opacity: 0;
+    }
+    .image:hover + .description {
+      transform: translateY(-276px);
+    }
+  </style>
+  <div class="image"></div>
+  <div class="description">맛있는 과일</div>
+</body>
+</html>
