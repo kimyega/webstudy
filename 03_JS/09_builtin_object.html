@@ -132,8 +132,166 @@
   }, 1000);
 </script>
 
+<script>
+  /* String 내장 객체 */
+
+  var str = 'JavaScript';
+
+  // 1. 문자열의 길이
+  console.log(str.length);
+
+  // 2. 특정 문자(지정된 인덱스에 위치하는 문자)
+  console.log(str.charAt(0));
+  console.log(str.charAt(str.length - 1));
+  
+  // 3. 특정 문자열
+  console.log(str.substring(0, 4));   //  0 <=  x   < 4
+  console.log(str.substring(4));      // x  >= 4
+  console.log(str.substr(0, 4));      //  0 <= x  3개
+  console.log(str.substr(4));         //  x >= 4 잘 안쓴다
+  console.log(str.slice(0, 4));       //  0 <= x < 4    - 인덱스 지원
+  console.log(str.slice(4));          // x >= 4
+  console.log(str.slice(-10, -6));    // -6 <= x <= -10
+  console.log(str.slice(-6));         // x >= -6
+  
+  // 4. 문자열 연결
+  console.log(str.concat(', ', 'Hello World'));
+
+  // 5. 특정 패턴으로 시작/특정 패턴으로 끝나는지 검사
+  console.log(str.startsWith('Java'));    // Java로 시작하면 true
+  console.log(str.endsWith('Script'));    // Script로 끝나면 true
+
+  // 6. 특정 문자열의 위치(인덱스) 찾기
+  console.log(str.indexOf('a'));      // 문자열 첫번째 a의 인덱스
+  console.log(str.lastIndexOf('a'));  // 문자열 마지막 a의 인덱스
+
+  // 7. 특정 문자열을 주어진 길이만큼 채우기
+  console.log(str.substr(0, 4).padEnd(10, '*'));
+  console.log(str.substring(4).padStart(10, '*'));
+  
+  // 8. 주어진 횟수만큼 반복하기
+  console.log(str.repeat(3));
+
+  // 9. 찾아 바꾸기(수정)
+  var str = '192.168.0.101';
+  console.log(str.replace('.', '_'));     // 한개
+  console.log(str.replaceAll('.', '_'));  // 전체
+
+  // 10. 대소문자 변환하기
+  var str = 'JavaScript';
+  console.log(str.toLowerCase()); // 모두 소문자
+  console.log(str.toUpperCase()); // 모두 대문자
+
+  // 11. 문자열 앞뒤로 포함된 불필요한 공백 제거하기
+  var str = '     Java     Script      ';
+  console.log('[' + str.trim() + ']');
+  console.log('[' + str.trimStart() + ']');   // alias 가능 : trimLeft()
+  console.log('[' + str.trimEnd() + ']');     // alias 가능 : trimRight()
+  console.log('[' + str.trimLeft() + ']');
+  console.log('[' + str.trimRight() + ']');
+
+  // 12. 문자열 객체의 문자열 값 반환
+  var str = new String('JavaScript');
+  console.log(str);           // 객체 {'JavaScript'}
+  console.log(str.valueOf()); // 문자열 'JavaScript'
+
+  // 13. 문자열을 분리해서 배열로 만들기
+  var str = 'Hello Tom! How are you?';
+  var words = str.split(' '); // words = ['Hello', 'Tom', ...]
+  console.log(words[1]);
+</script>
+
+<script>
+  /* Array 내장 객체 */
+  var array = ['trip', 'fitness', 'movie', 'tracking', 'fishing'];
+  
+  // 1. 반복 메소드
+  array.forEach(function(element){
+    console.log(element);
+  });
+  array.forEach(function(element, i){
+    console.log(i + ':' + element);
+  });
+  
+  // 2. 필터 (지정한 조건을 만족하는 요소마 남긴 배열 만들기)
+  // array.filter((요소) => 요소 검사);
+  var result = array.filter((element) => element.length > 6); // 길이가 6보다 큰 요소만 남긴 배열 반환
+  console.log(result);
+  
+  // 3. 배열 요소를 변경하기
+  // array.map((요소) => 변경할 값);
+  var array = [1, 2, 3, 4, 5];
+  var map = array.map((element) => element ** 2);
+  console.log(map);
+  
+  // 4. 배열 요소를 합쳐서 문자열로 반환하기
+  var array = ['trip', 'fitness', 'movie', 'tracking', 'fishing'];
+  console.log(array.join());      // 콤마(,) 로 연결 (디폴트)
+  console.log(array.join(' '));   // 공백으로 연결
+  
+</script>
+<!-- String -->
+<script>
+
+</script>
+
+<!-- Array -->
+<script>
+
+</script>
+
+<!-- Math -->
+<script>
+  /* Math 내장 함수 */
+  
+  console.log(Math.abs(-7.1));          // 절댓값
+
+  console.log(Math.ceil(7.1));          // 양의 정수 올림
+  console.log(Math.ceil(-7.1));         // 음의 정수 올림
+
+  console.log(Math.floor(7.1));         // 양의 정수 내림
+  console.log(Math.floor(-7.1));        // 음의 정수 내림
+
+  console.log(Math.round(7.1))          // 양의 정수 반올림
+  console.log(Math.round(-7.1))         // 음의 정수 반올림
+
+  console.log(Math.trunc(7.1));         // 소수부 절사
+  console.log(Math.trunc(-7.1));        // 소수부 절사
+
+  console.log(Math.max(1, 2, 3, 4, 5)); // 주어진 값 중 가장 큰 값
+  console.log(Math.min(1, 2, 3, 4, 5)); // 주어진 값 중 가장 작은 값
+
+  var array = [1, 2, 3, 4, 5];
+  console.log(Math.max(...array));      // 전개 연산자 ... 를 사용해야 배열 사용 가능
+  console.log(Math.min(...array));
+
+  console.log(Math.pow(2, 3));          // 2의 3제곱
+
+  console.log(Math.random());           // 0 <= 난수 < 1
+
+  console.log(Math.sqrt(25));           // 루트
+
+</script>
+
+<!-- 문제3. 정수 난수 발생기 -->
+<!-- getRandomInt(2, 5) : 2부터 5개(2, 3, 4, 5, 6) 중 하나의 난수를 반환하는 함수 -->
+<script>
+var getRandomInt = function(start, count){
+  return Math.trunc(Math.random() * count + start);
+}
+console.log(getRandomInt(2, 5));
+</script>
+
+<!-- 문제4. 올림 함수를 자리수 지정이 가능하도록 커스터마이징 하기 -->
+<script>
+  function ceil(number, digit = 0){
+    return Math.ceil(number * Math.pow(10, digit)) / Math.pow(10, digit);
+  }
+  console.log(ceil(555.555, -2));
+  
 
 
+</script>
 
 </body>
 </html>
