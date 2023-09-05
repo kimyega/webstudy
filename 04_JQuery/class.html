@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <style>
+    .big {
+      font-size:  32px;
+
+    }
+    .small {
+      font-size: 8px;
+    }
+    .visable {
+      /* visibility: visible;
+      opacity: 1;
+      display: block;
+      color: rgba(0, 0, 0, 1); */
+      position: relative;
+      top: 0;
+
+    }
+    .invisable { 
+      /* visibility: hidden;
+      opacity: 0;
+      display: none;
+      color: rgba(0, 0, 0, 0);
+      position: relative; */
+      top: -99999px;
+    }
+  </style>
+  <div id="box1">Hello World</div>
+  <div id="box2">Hello World</div>
+  <script>
+    // class 속성 추가하기
+    $('#box').addClass('big').addClass('visable');  // 메소드 체이닝으로 2개의 class 지정하기
+    $('#box2').addClass('small invisable');         // 공백으로 구분해서 2개의 class 지정하기
+    
+    // class 속성 제거하기
+    $('#box1').removeClass('visable');
+    $('#box2').removeClass('invisable');
+
+    // class 속성 확인하기
+    if($('#box1').hasClass('big')){
+      $('#box1').removeClass('big');
+      $('#box1').addClass('small');
+    }
+    
+    // class 속성 토글 (추가와 제거가 번갈아가면서 적용되는것
+    $('#box1').toggleClass('small');
+    $('#box2').toggleClass('small').toggleClass('small');
+  </script>
+
+</body>
+</html>

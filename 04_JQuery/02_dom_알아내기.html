@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  
+  <div id="box" class="wrap"></div>
+  <script>
+
+    // 1. 태그로 인식하면 배열
+    var div = $('div');     // getElementByTagName('div')
+    console.log(div);
+
+    // 2. id로 인식하면 객체  
+    var box = $('#box');    // getElementById('box')
+    console.log(box);
+
+    // 3. class로 인식하면 배열
+    var wrap = $('.wrap');  // getElementByClassName('wrap')
+    console.log(wrap);
+  </script>
+
+  <div class="ott_wrap">
+    <ul id="ott">
+      <li id="watcha"><a href="#">왓챠</a></li>
+      <li id="coupangplay"><a href="#">쿠팡플레이</a></li>
+      <li id="netflex"><a href="#">넷플릭스</a></li>
+      <li id="disneyplus"><a href="#">디즈니플러스</a></li>
+      <li id="wave"><a href="#">웨이브</a></li>
+    </ul>
+  </div>
+
+  <script>
+    // 1. 자식
+    var ott = $('.ott_wrap > .ott');        // 자식 선택자
+    console.log(ott); 
+    
+    var ott = $('.ott_wrap').find('.ott');  // find 메소드
+    console.log(ott);
+    
+    var ott = $('.ott_wrap').children();    // .ott_wrap의 모든 자식
+    console.log(ott);
+
+    // 2. 후손
+    var li = $('.ott_wrap li');                     // 후손 선택자
+    console.log(li);
+    
+    var li = $('.ott_wrap').find('li');             // find 메소드
+    console.log(li);
+    
+    var li = $('.ott_wrap').children().children();  // .ott_wrap의 자식의 자식
+    console.log(li);
+
+    // 3. 형제
+    var sibling = $('#netflex ~ li');             // 모든 형제 선택자 (#netflex 다음 모든 형제)
+    console.log(sibling);
+    
+    var sibling = $('#netflex').nextAll('li');    // nextAll 메소드 (#netflex 다음 모든 형제)
+    console.log(sibling);
+
+    var sibling = $('#netflex').siblings('li');   // siblings 메소드 (#netflex 모든 형제)
+    console.log(sibling);
+    
+    var sibling = $('#netflex').prevAll('li');    // prevAll 메소드 (#netflex 이전 모든 형제)
+    console.log(sibling);
+
+    // 4. 인접 형제 
+    var sibling = $('#netflex + li');         // 인접 형제 선택자 (#netflex의 다음 형제 하나)
+    console.log(sibling);
+
+    var sibling = $('#netflex').next('li');   // next 메소드(#netflex의 다음 형제 하나)
+    console.log(sibling);
+    
+    var sibling = $('#netflex').prev('li');   // prev 메소드 (#netflex의 이전 형제 하나)
+    console.log(sibling);
+    
+    // 5. 부모
+    var parent = $('#netflex').parent();            // 부모
+    console.log(parent);
+    
+    var parent = $('#netflex').closest('div');      // 가장 가까운 div 부모 
+    console.log(parent);
+    
+    var parent = $('#netflex').parents();           // 모든 부모
+    console.log(parent);
+    
+    </script>
+  <hr>
+
+  <div class="form_wrap">
+    <form id="form">
+      <div><input type="text" autofocus></div>
+      <div><input type="password"></div>
+      <div>
+        <input type="radio" name="gender" value="man">남자
+        <input type="radio" name="gender" value="woman">여자
+        <input type="radio" name="gender" value="none" checked>선택안함
+      </div>
+      <div>
+        <input type="checkbox" name="hobbies" value="travel">여행
+        <input type="checkbox" name="hobbies" value="tracking">트래킹
+        <input type="checkbox" name="hobbies" value="cycle" checked>사이클
+      </div>
+      <div>
+        <select>
+          <option value="">선택하세요</option>
+          <option value="A" selected>A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    var text = $('input[type="text"]');
+    console.log(text);
+
+    var text = $(':text');
+    console.log(text);
+
+    var password = $(':password');
+    console.log(password);
+
+    var radio = $(':radio');
+    console.log(radio);
+
+    var checkbox = $(':checkbox');
+    console.log(checkbox);
+
+    // 상태 저장하기
+    var text = $(':focus');     // 포커스를 가진 요소 
+    console.log(text);
+
+    var radioChecked = $(':radio:checked');    // 체크된 radio
+    console.log(radioChecked);
+
+    var checkboxChecked = $(':checkbox:checked'); // 체크된 checkbox
+    console.log(checkboxChecked); 
+
+    var selected = $(':selected');     // 선택된 요소(<selected 태그>)
+    console.log(selected);
+    
+    /*
+      상태 확인하기
+      is(':focus')    포커스를 가졌다면 true 반환
+      is(':checked')  체크되었다면 true 반환
+      is(':selected') 선택되었다면 true 반환
+    */
+   if($(':radio').is(':checked')){
+     console.log('radio 체크됨');
+   } else {
+    console.log('radio 체크 안됨');
+   }
+  </script>
+  <hr>
+  <!-- 태그 내부 텍스트 -->
+  <p id="p1">Hello World</p>
+  <script>
+    /* JavaScript의 textContent 속성 == jQuery의 text() 메소드
+      요소.text()       : getter
+      요소.text(param)  : setter
+    */
+    var p1 = $('#p1');
+    console.log(p1.text());
+    p1.text('안녕하세요. 반갑습니다.');
+  </script>
+
+  <!-- 태그 내부 요소 -->
+  <p id="p2"><strong>Hello World</strong></p>
+  <script>
+    /* JavaScript의 innerHTML 속성 == jQuery의 html() 메소드
+      요소.html()       : getter
+      요소.html(param)  : setter
+    */
+    var p2 = $('#p2');
+    console.log(p2);
+    p2.html('<mark>안녕하세요. 반갑습니다.</mark>');
+  </script>
+
+  <!-- 태그 속성 -->
+  <p id="p3">
+    <img src="../../assets/image/loading.gif" width="384px">
+  </p>
+
+  <script>
+    /*
+      JavaScript의 Attribute다루기 == jQuery의 Attribute 다루기
+      요소.getAttribute('속성')         요소.attr('속성')
+      요소.setAttribute('속성', '값')   요소.attr('속성', '값')
+      요소.removeAttribute('속성')      요소.removeAttr('속성')
+    */
+
+  var img = $('#p3 > img');
+   console.log(img.attr('src'));
+   console.log(img.attr('width'));
+   img.attr('src', '../../assets/image/flower2.jpg');
+   img.attr('width', '192px');
+   img.removeAttr('src');
+   img.removeAttr('width');
+  </script>
+
+  <hr>
+  
+  <p id="p4">
+    <input type="radio" name="gender" value="M" id="male" class="blind" checked="checked" data-gender="1">
+    <label for="male">남자</label>
+    <input type="radio" name="gender" value="F" id="female" class="blind" data-gender="2">
+    <label for="female">여자<label>
+  </p>
+
+  <script>
+    /* JavaScript의 property 다루기 == jQuery의 property다루기
+      요소.프로퍼티                     요소.prop('프로퍼티')
+      요소.['프로퍼티']                 요소.prop('프로퍼티')
+      요소.프로퍼티 = 값                요소.prop('프로퍼티', '값')
+      요소['프로퍼티'] = 값                요소.prop('프로퍼티', '값')
+      delete 요소.프로퍼티              요소.removeProp('프로퍼티') : built-in property 삭제 금지
+      delete 요소['프로퍼티']              요소.removeProp('프로퍼티') : built-in property 삭제 금지
+    */
+    var radio = $('#p4 > :radio:checked');
+    console.log(radio.prop('id'));
+    console.log(radio.prop('class'));       // class 속성을 다루는 메소드는 별도로 존재함 (addClass(), removeClass(), toggle Class())
+    console.log(radio.prop('checked'));     // 동일한 결과 : radio.is(':checked')
+    console.log(radio.prop('value'));       // value 속성을 다루는 메소드는 별도로 존재함 (val())
+    console.log(radio.prop('data-gender')); // data- 속성을 다루는 메소드는 별도로 존재함 (data())
+
+    radio.prop('id', 'man');
+    radio.next().prop('for', 'man');
+    radio.prop('checked', false);
+  </script>
+
+  <hr>
+    <!-- CSS 처리하기 -->
+    <p id="p5">Hello World</p>
+    <script>
+      /*                         JavaScript             jQuery
+        css style 가져오기  요소.style.css속성        요소.css('css 속성')
+                            요소.style['css속성']     요소.css('css속성')
+        css style 설정하기  요소.style.css속성 = '값' 요소.css('css속성', '값')
+        '' 안의 값은 -있는 기본방식으로 작성
+      
+      */
+      /*
+
+      */
+      var p5 = $('#p5');
+      p5.css('font-size', '32px').css('font-weight', '900');
+      p5.css({
+        'background-color': 'crimson', 
+        'border': '1px solid gray'
+      });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <hr>
+
+  <div class="post" data-post="1">
+    <h1 class="title">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove1">
+  </div>
+  <div class="post" data-post="2">
+    <h1 class="title">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove1">
+  </div>
+
+  <script>
+    var target = $('.btn_remove1').closest('div');
+    console.log(target);
+  </script>
+  <hr>
+
+  <div class="post">
+    <h1 class="title" data-post="1">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove2">
+  </div>
+  <div class="post">
+    <h1 class="title" data-post="2">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove2">
+  </div>
+  <script>
+    var target = $('.btn_remove2').siblings('.title');
+    console.log(target);
+  </script>
+  <hr>
+
+  <div class="post">
+    <h1 class="title">제목1</h1>
+    <div class="content" data-post="1">내용1</div>
+    <input type="button" value="삭제" class="btn_remove3">
+  </div>
+  <div class="post">
+    <h1 class="title">제목2</h1>
+    <div class="content" data-post="2">내용2</div>
+    <input type="button" value="삭제" class="btn_remove3">
+  </div>
+
+  <script>
+    var target = $('.btn_remove3').prev();
+    console.log(target);
+  </script>
+  <hr>
+
+  <div class="post">
+    <h1 class="title">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove4" data-post="1">
+  </div>
+  <div class="post">
+    <h1 class="title">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove4" data-post="2">
+  </div>
+
+  <script>
+    var target = $('.btn_remove4');
+    console.log(target);
+  </script>
+  <hr>
+
+  <div class="post">
+    <h1 class="title">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove5">
+    <input type="hidden" value="1">
+  </div>
+  <div class="post">
+    <h1 class="title">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove5">
+    <input type="hidden" value="2">
+  </div>
+
+  <hr>
+
+  <script>
+    // data-post 속성이 있는 태그를 찾아서 console에 출력하기
+    var target = $('.btn_remove5').next();
+    console.log(target);
+  </script>
+
+</body>
+</html>
