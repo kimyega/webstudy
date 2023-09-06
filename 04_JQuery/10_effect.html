@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <style>
+    #img {
+      width: 576px;
+      height: 384px;
+      background-image: url(../../assets/image/flower1.jpg);
+      background-size: 100%;
+      margin: 10px auto;
+
+    }
+  </style>
+
+  <div>
+    <button onclick="location.reload()">새로고침</button>
+    <button id="btn_open">열기</button>
+    <button id="btn_close">닫기</button>
+    <button id="btn_toggle">닫기</button>
+  </div>
+  <div id="img"></div>
+
+  <script>
+    /*
+      닫기 효과
+      1. hide()       : 그냥 닫힌다.
+      2. fadeOut()    : 서서히 닫힌다.
+      3. fadeTo()     : 서서히 투명해진다.
+      4. slideUp()    : 위로 슬라이드되면서 닫힌다.
+        (1) swing     : 점점 빨라지거나 느려지는 속도
+        (2) linear    : 일정한 속도
+    */
+   $('#btn_close').click(function(){
+    // $('#img').hide();
+    // $('#img').fadeOut(400, 'linear', function(){
+      
+    // });    // 2000 = 2초동안 서서히 닫힌다.
+    // $('#img').slideUp(2000, 'linear', function(){
+    //   alert('닫혔습니다.');
+    // })
+    $('#img').fadeTo(1000, 1);
+   })
+    /*
+    열기 효과
+    1. show()       : 그냥 나타난다.
+    2. fadeIn()     : 서서히 나타난다.
+    3. slideDown()  : 아래로 슬라이드되면서 나타난다.
+    */
+   $('#btn_open').click(function(){
+    // $('#img').show();
+    // $('#img').fadeIn(600, 'linear', function(){
+    //   alert('열렸습니다.');
+    // });
+    // $('#img').slideDown(2000, 'linear', function(){
+    //   alert('열렸습니다.');
+    // })
+    $('#img').fadeTo(1000, 0.3);
+   });
+
+   /*
+    열기 효과
+    1. toggle()       : 그냥 나타났다 사라진다. 
+    2. fadeToggle()     : 서서히 나타났다 사라진다.
+    3. slideToggle()  : 위/아래로 슬라이드되면서 나타났다 사라진다.
+    */
+   $('#btn_toggle').click(function(){
+    // $('#img').toggle();
+    $('#img').fadeToggle();
+    // $('#img').slideToggle();
+   })
+
+  </script>
+
+
+</body>
+</html>l
