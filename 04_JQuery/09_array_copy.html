@@ -182,6 +182,110 @@
 
   </script>
 
+<hr>
+
+
+  <div id="box2">
+    <button id="btn2">XML요청2</button>
+  </div>
+  <script>
+    $('#btn2').click(function(){
+      $.ajax({
+        /* 요청 */
+        type: 'get',
+        url: 'product2.xml',
+        async: true,
+        dataType: 'xml',
+        success: function(resData){
+          var productList = $('<div>').addClass('product_list');
+          $.each($(resData).find('product'), function(i, elem){
+            var div = $('<div>').addClass('product');
+            div.append($('<strong>').text($(elem).attr('model')));
+            div.append($('<em>').text($(elem).attr('maker')));
+            div.append($('<mark>').text($(elem).attr('price')));
+            productList.append(div);
+            $('#box2').append(productList);
+          })
+        },
+        error: function(jqXHR){
+          alert(jqXHR.status + '(' + jqXHR.statusText + ')');
+        }
+      })
+    })
+  </script>
+  <style>
+    #box2 div {
+      box-sizing: border-box;
+      border: 1px solid gray;
+    }
+    #box2 .product_list {
+      width: 400px;
+      display: flex;
+      justify-content: space-between;
+    }
+    #box2 .product {
+      width: 100px;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    #box2 .product * {
+      display: block;
+    }
+  </style>
+
+<hr>
+
+
+<!-- Promise 예시. ajax이 ajax을 호출하는 동작 시나리오 -->
+<script>
+  
+function checkEmail(){
+  return new Promise(function(resolve, reject){
+    // 사용자의 이메일
+    var email = 'admin@web.com';
+    // 1. ajax1 : 입력한 이메일이 사용 가능한 이메일인지 확인한다. (DB에 등록된 이메일인지 여부 확인)
+    $.ajax({
+      type: 'get',
+      url: 'validEmail.json',  // {"validEmail": true} 또는 {"validEmail": false}
+      async: true,
+      data: 'email=' + email,  // 사용자의 이메일을 서버로 보냄
+      dataType: 'json',
+      success: function(resData){
+        if(resData.validEmail){
+          resolve(email);
+        } else {
+          reject(email);
+        }
+      }
+    })
+  })
+}
+
+checkEmail().then(function(email){
+  // 사용자가 입력한 인증코드
+  var authcode = '654321';
+  // 2. ajax2 : 사용 가능한 이메일이라면 인증 메일을 보낸다.
+  $.ajax({
+    type: 'get',
+    url: 'authentication.json',  // {"authcode": "123456"} (의미: 사용자의 이메일로 보낸 인증코드)
+    async: true,
+    data: 'email=' + email,
+    success: function(resData){
+      if(authcode === resData.authcode){
+        alert('인증되었습니다.');
+      } else {
+        alert('인증실패했습니다.');
+      }
+    }
+  })
+}).catch(function(email){
+  alert(email + ' 이메일은 이미 등록되었습니다.');
+})
+
+</script>
+
+
+<hr>
 
 </body>
 </html>

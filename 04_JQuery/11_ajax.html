@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  
+  <div id="box1">
+    <button id="btn1">XML요청1</button>
+  </div>
+  <script>
+
+    $('#btn1').click(function(){
+      $.ajax({
+        // 요청
+        type: 'get',
+        url:'product1.xml',
+        async: true,
+        // 응답
+        dataType: 'xml',
+        success: function(resData){    // 매개변수 resData로 응답 데이터가 전달됨
+          $('#box1').find('ul').remove();
+          var product = $(resData).find('product');
+          $.each(product, function(i, e){
+            var ul = $('<ul>');
+            ul.append($('<li>').text($(e).find('model').text()));
+            ul.append($('<li>').text($(e).find('maker').text()));
+            ul.append($('<li>').text($(e).find('price').text()));
+            $('#box1').append(ul);    // html은 덮어쓰기가 되므로 조심!
+          })
+        },
+        error: function(jqXHR){   // jQuery XHR 객체: 에러 정보 객체
+          var box1 = $('#box1');
+          box1.append($('<div>').text('응답코드' + jqXHR.status));
+          box1.append($('<div>').text('응답코드 텍스트' + jqXHR.statusText));
+          box1.append($('<div>').html('응답텍스트' + jqXHR.responseText));
+        }
+      })
+    })
+  </script>
+
+  <hr>
+
+  <div id="box2">
+    <button id="btn2">XML요청2</button>
+  </div>
+  <script>
+    $('#btn2').click(function(){
+      $.ajax({
+        type: 'get',
+        url: 'product2.xml',
+        async: true,
+        dataType: 'xml',
+        success: function(resData){
+          $('#box2').find('div').remove();
+          var productList = $('<div>').addClass('product_list');
+          $.each($(resData).find('product'), function(i, elem){
+            var div = $('<div>').addClass('product');
+            div.append($('<strong>').text($(elem).attr('model')));
+            div.append($('<em>').text($(elem).attr('maker')));
+            div.append($('<mark>').text($(elem).attr('price')));
+            productList.append(div);
+            $('#box2').append(productList);  
+          })
+        },
+        error: function(jqXHR){
+          alert(jqXHR.status + '(' + jqXHR.statusText + ')');
+        }
+      })
+    })
+  </script>
+  <style>
+    #box2 div {
+      box-sizing: border-box;
+      border: 1px solid grey;
+    }
+    #box2 .product_list {
+      width: 400px;
+      display: flex;
+      justify-content: space-between;
+    }
+    #box2 .product{
+      width: 100px;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    #box2 .product * {
+      display: block;
+    }
+  </style>
+
+  <hr>
+
+  <div id="box3">
+    <button id="btn3">JSON요청1</button>
+  </div>
+  <script>
+    $('#btn3').click(function(){
+      $.ajax({
+        type: 'get',
+        url: 'product1.json',
+        async: 'true',
+        dataType: 'json',
+        success: function(resData){ // resData  = JSON.parse(xhr.responseText)
+          myFunc1(resData);
+        },
+        error: function(jqXHR){
+          alert(jqXHR.status + '(' + jqXHR.statusText + ')')
+        }
+      })
+    })
+    function myFunc1(resData){
+      $('#box3').find('div').remove();
+      var div = $('<div>').addClass('product');
+      $.each(resData, function(i, e){
+        var div2 = $('<div>').addClass('pro_name');
+        var div3 = $('<div>').addClass('pro');
+        var ul = $('<ul>');
+        div2.append($('<p>').text('제품' + (i + 1)));
+        ul.append($('<li>').text(e.maker));
+        ul.append($('<li>').text(e.price));
+        ul.append($('<li>').text(e.model));
+        div3.append(div2);
+        div3.append(ul);
+        div.append(div3);
+        $('#box3').append(div);
+      })
+    }
+  </script>
+  <style>
+    #box3 div {
+      box-sizing: border-box;
+      margin: 10px 0px;
+    }
+    #box3 .pro {
+      width: 100/3%;
+      height: 100%;
+      display: inline-block;
+      border: 1px solid grey;
+    }
+    #box3 .product {
+      width: 548px;
+      justify-content: space-between;
+    }
+    #box3 ul {
+      list-style-type: none;
+      width: 100px;
+      padding: 20px 40px;
+      text-align: center;
+    }
+    #box3 .pro_name {
+      text-align: center;
+      width: 100/3%;
+      margin: 20px 40px;
+      border: 1px solid grey;
+    }
+
+  </style>
+
+  <hr>
+  <div id="box4">
+    <button id="btn4">JSON요청2</button>
+  </div>
+  <script>
+    $('#btn4').click(function(){
+      $.ajax({
+        type: 'get',
+        url: 'product2.json',
+        async: true,
+        dataType: 'json',
+        success: function(resData){
+          $('#box4').find('table').remove();
+          myFunc2(resData);
+          
+        },
+        error: function(jqXML){
+          alert(jqXML.status + '(' + jqXML.statusText + ')');
+        }
+      })
+    })
+    function myFunc2(resData){
+      var tb = $('<table border="1"><thead><tr><td>순번</td><td>브랜드</td><td>가격</td><td>모델</td></tr></thead></table>');
+      $.each(resData.products, function(i, e){
+        var tbody = $('<tbody>');
+        var tr = $('<tr>');
+        tr.append($('<td>').text(i + 1));
+        tr.append($('<td>').text(e.maker));
+        tr.append($('<td>').text(e.price));
+        tr.append($('<td>').text(e.model));
+        tbody.append(tr);
+        tb.append(tbody);
+      })
+      $('#box4').append(tb);
+    }
+  </script>
+</body>
+</html>
