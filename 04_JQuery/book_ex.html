@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <div id="box1">
+    <button id="btn_img">이미지 열기</button>
+    <div id="img"></div>
+  </div>
+  <script>
+    $('btn_img').click(function(){
+      openImage();
+    })
+    function openImage(){
+      new Promise(function(resolve, reject){
+        $.ajax({
+          type: 'get',
+          url: 'book.xml',
+          async: true,
+          dataType: 'xml',
+          success: function(resData){
+            resolve(resData);
+          },
+          error(jqXML){
+            reject(jqXML);
+          }
+        })
+      })
+    }
+    openImage().then(function(resData){
+      $.each(resData, function(i, e){
+        var img = new Image();
+        img.src = URL.createObjectURL($(e).);
+
+      })
+
+      $('#img').empty();
+      $('#img').append(img);
+    }).catch(function(jqXML){
+      alert('이미지 등록 오류');
+    })
+  </script>
+
+</body>
+</html>
